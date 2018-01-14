@@ -23,4 +23,8 @@ public class StudentDAO {
     public HashMap<Integer, Student> getAllStudents() {
         return studentHashMap;
     }
+
+    public Student getStudentDetails(int id) {
+        return studentHashMap.get(id);
+    }
 }

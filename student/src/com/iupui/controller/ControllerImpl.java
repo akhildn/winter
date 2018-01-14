@@ -24,16 +24,17 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
-    public boolean retrieveStudentDb() {
+    public HashMap<Integer, Student> retrieveStudentDb() {
         HashMap<Integer, Student> studentHashMap = studentDAO.getAllStudents();
         if(studentHashMap.isEmpty()){
-            return false;
+            return null;
         }
-        return true;
+        return studentHashMap;
     }
 
     @Override
-    public Student retrieveStudentInfoById() {
-        return null;
+    public Student retrieveStudentInfoById(int id) {
+        Student student = studentDAO.getStudentDetails(id);
+        return student;
     }
 }

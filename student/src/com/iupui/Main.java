@@ -2,8 +2,10 @@ package com.iupui;
 
 import com.iupui.controller.Controller;
 import com.iupui.controller.ControllerImpl;
+import com.iupui.model.beans.Student;
 
 import java.util.ConcurrentModificationException;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
@@ -31,11 +33,21 @@ public class Main {
                         controller.addStudent(fname,lname);
                         break;
                     case 2:
-                        if(controller.retrieveStudentDb()){
-                            // to be continued
+                        HashMap<Integer, Student> studentHashMap = controller.retrieveStudentDb();
+                        if(studentHashMap != null){
+                            for ( int id: studentHashMap.keySet()) {
+                                Student student = studentHashMap.get(id);
+                                System.out.println(student.getFirstName() + "\t" + student.getLastName() + "\t" +
+                                    student.getStudentId());
+                            }
                         }
                         break;
                     case 3:
+                        System.out.println("enter student id: ");
+                        int id = in.nextInt();
+                        Student student = controller.retrieveStudentInfoById(id);
+                        System.out.println(student.getFirstName() + "\t" + student.getLastName() + "\t" +
+                                student.getStudentId());
                         break;
                     case 4:
                         System.exit(0);
